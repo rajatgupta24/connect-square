@@ -2,13 +2,18 @@ const squares = document.querySelectorAll(".box");
 const turn = document.querySelector(".turn");
 const result = document.querySelector(".result");
 const button = document.querySelector("button");
+const instruct = document.querySelector(".instruct");
 
 button.addEventListener("click", () => {
+
     result.textContent = "";
+    instruct.textContent = "";
+
     for (let i = 0;i < squares.length; i++){
         squares[i].classList.remove("red");
         squares[i].classList.remove("blue");
     }
+
     setGame();
 });
 
@@ -16,20 +21,23 @@ function setGame () {
     let row1 = document.querySelectorAll(".row1");
         row1 = Array.from(row1);
     let row2 = document.querySelectorAll(".row2");
-        row2 = Array.from(row2)
+        row2 = Array.from(row2);
     let row3 = document.querySelectorAll(".row3");
-        row3 = Array.from(row3)
+        row3 = Array.from(row3);
     let row4 = document.querySelectorAll(".row4");
-        row4 = Array.from(row4)
+        row4 = Array.from(row4);
     let row5 = document.querySelectorAll(".row5");
-        row5 = Array.from(row5)
+        row5 = Array.from(row5);
     let row6 = document.querySelectorAll(".row6");
-        row6 = Array.from(row6)
+        row6 = Array.from(row6);
     let row7 = document.querySelectorAll(".row7");
-        row7 = Array.from(row7)
+        row7 = Array.from(row7);
 
     let player = false;
     let lastbox;
+
+    //when the game starts its player-1's turn
+    turn.textContent = "player 1";
 
     function checkBoard() {
         const winningArrays = [
@@ -55,6 +63,7 @@ function setGame () {
                 square3.classList.contains('red') &&
                 square4.classList.contains('red')) {
                     result.innerHTML = 'Player one wins!';
+                    instruct.textContent = "Press the Restart button to play again."
                     return;
             } 
             else if (square1.classList.contains('blue') &&
@@ -62,6 +71,7 @@ function setGame () {
                 square3.classList.contains('blue') &&
                 square4.classList.contains('blue')) {
                     result.innerHTML = 'Player two wins!';
+                    instruct.textContent = "Press the Restart button to play again."
                     return;
             }
         }
@@ -70,10 +80,10 @@ function setGame () {
     function changePlayer (square) {
         if (!player){
             square.classList.add("red");
-            turn.textContent = "player 1";
+            turn.textContent = "player 2";
         } else {
             square.classList.add("blue");
-            turn.textContent = "player 2";
+            turn.textContent = "player 1";
         }
         player = !player;
 
